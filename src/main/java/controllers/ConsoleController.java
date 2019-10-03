@@ -8,6 +8,7 @@ import entities.Booking;
 import entities.Flight;
 import entities.Passenger;
 import logger.Logger;
+import view.InvalidUserInput;
 import view.PassengerInputs;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class ConsoleController {
     public Passenger startAuthorization() {
         String login = pi.getLogin();
         String password = pi.getPassword();
-        return  uc.getPassengerData(login, password);
+        return uc.getPassengerData(login, password);
     }
 
     public Passenger startRegistration() {
@@ -43,31 +44,40 @@ public class ConsoleController {
     }
 
     public void getFlightByIdAndShowIt() {
-        Flight flightByNumber =
-                fc.getFlightByNumber(pi.getFlightId());
-        System.out.println(flightByNumber);
+        try {
+            Flight flightByNumber =
+                    fc.getFlightByNumber(pi.getFlightId());
+            if (flightByNumber != null) {
+                System.out.println(flightByNumber);
+            }
+        } catch (Exception e) {
+            System.out.println("There is no such flight");
+        }
     }
 
-    public void searchAndBooking() {
+    public void searchAndBooking() throws InvalidUserInput {
         AtomicInteger flightNumber = new AtomicInteger(1);
         String destination = pi.getDestination();
         String date = pi.getDate();
         int ticketsQuantity = pi.getTicketsQuantity();
         List<AirTrip> suitableFlights = fc.getSuitableFlights(destination, date, ticketsQuantity);
         suitableFlights.forEach(f -> System.out.println(flightNumber.getAndIncrement() + " . " + f));
-
-        AirTrip flight = suitableFlights.get(pi.getMenuItem() - 1);
-        for (int i = 0; i < ticketsQuantity; i++) {
-            bc.makeBooking(flight.getFlightNumber(), new Passenger(pi.getName(), pi.getSurname()));
+        if (suitableFlights.size() == 0) {
+            System.out.println("There are no available options");
+        } else {
+            AirTrip flight = suitableFlights.get(pi.getMenuItem() - 1);
+            for (int i = 0; i < ticketsQuantity; i++) {
+                bc.makeBooking(flight.getFlightNumber(), new Passenger(pi.getName(), pi.getSurname()));
+            }
+            fc.bookSeats(ticketsQuantity,
+                    flight.getFlightNumber());
         }
-        fc.bookSeats(ticketsQuantity,
-                flight.getFlightNumber());
     }
 
     public void getBookingsOfPassenger(Passenger passenger, boolean isAuthorized) {
-        if(isAuthorized){
+        if (isAuthorized) {
             bc.getFlightsOfPassenger(passenger);
-        } else{
+        } else {
             String name = pi.getName();
             String surname = pi.getSurname();
             List<Booking> flightsOfPassenger
@@ -82,7 +92,7 @@ public class ConsoleController {
     }
 
     public void saveChanges(boolean isAuthorized) {
-        if( isAuthorized){
+        if (isAuthorized) {
             uc.save();
         }
         fc.save();

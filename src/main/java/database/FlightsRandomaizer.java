@@ -48,10 +48,11 @@ public class FlightsRandomaizer {
     private final int arraySize = destinations.length;
     private final int quantity;
     private final int lastMonthInSchedule;
+    private final int firstMonthInSchedule;
 
-
-    public FlightsRandomaizer(int quantity, int lastMonthInSchedule) {
+    public FlightsRandomaizer(int quantity, int firstMonthInSchedule, int lastMonthInSchedule) {
         this.quantity = quantity;
+        this.firstMonthInSchedule = firstMonthInSchedule;
         this.lastMonthInSchedule = lastMonthInSchedule;
     }
 
@@ -83,7 +84,7 @@ public class FlightsRandomaizer {
 
     private String generateDate() {
         int day = generateValueFromRange(1, 30);
-        int month = generateValueFromRange(9, lastMonthInSchedule);
+        int month = generateValueFromRange(firstMonthInSchedule, lastMonthInSchedule);
         int hour = generateValueFromRange(0, 24);
 
         return createStringDate(day,month,2019,hour);
@@ -137,7 +138,7 @@ public class FlightsRandomaizer {
 
 
     public static void main(String[] args) throws ParseException {
-        FlightsRandomaizer newFlights = new FlightsRandomaizer(1500, 10);
+        FlightsRandomaizer newFlights = new FlightsRandomaizer(1500, 10,11);
         List<Flight> flights = newFlights.get();
         FlightDAO flDAO = new FlightDAO();
         for (int i = 0; i < flights.size(); i++) {

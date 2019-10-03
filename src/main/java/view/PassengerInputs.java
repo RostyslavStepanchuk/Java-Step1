@@ -1,5 +1,10 @@
 package view;
 
+//import com.sun.org.apache.xalan.internal.xsltc.compiler.util.TypeCheckError;
+//import sun.awt.windows.WPrinterJob;
+
+import java.text.ParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PassengerInputs {
@@ -7,9 +12,15 @@ public class PassengerInputs {
     private Scanner scan = new Scanner(System.in);
 
 
-    public int getMenuItem() {
-        int item = scan.nextInt();
-        return item;
+    public int getMenuItem() throws InvalidUserInput {
+        int input = 0;
+        try {
+            input = scan.nextInt();
+        } catch (InputMismatchException e) {
+            scan.nextLine();
+            throw new InvalidUserInput("Wrong input", input, e);
+        }
+        return input;
     }
 
 
@@ -28,7 +39,7 @@ public class PassengerInputs {
 
     public int getTicketsQuantity() {
         System.out.println("Enter how many people are going to take a flight? ");
-        int tickets = scan.nextInt();
+        String tickets = scan.nextLine();
         return validateTicketsQuantity(tickets);
     }
 
@@ -58,6 +69,7 @@ public class PassengerInputs {
         System.out.println("Enter your flight ID");
         return scan.next();
     }
+
     public String getBookingId() {
         System.out.println("Enter your booking ID");
         return scan.next();
@@ -65,32 +77,36 @@ public class PassengerInputs {
 
     // validators goes here
     private String validateDestination(String city) {
-        String cityAgain = scan.nextLine();
         if (city.length() < 2) {
-            return validateDestination(cityAgain);
+            System.out.println("wrong input");
+            return this.getDestination();
         }
         boolean check = city.matches("^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$");
         if (!check) {
             System.out.println("You have to enter correct city name");
-        } else {
-            return city;
+            return this.getDestination();
         }
-        return validateDestination(cityAgain);
+        return city;
+
     }
 
     private String validateDate(String date) {
-        String dateAgain = scan.nextLine();
         boolean check = date.matches("([0-9]{2})\\.([0-9]{2})\\.([0-9]{4})");
         if (!check) {
             System.out.println("Not valid date. Enter the date at format dd.mm.yyyy");
+            return this.getDate();
         } else {
             return date;
         }
-        return validateDate(dateAgain);
     }
 
-    private int validateTicketsQuantity(int tickets) {
-        return tickets;
+    private int validateTicketsQuantity(String tickets) {
+        if (tickets.matches("([0-9]+)")) {
+            return Integer.parseInt(tickets);
+        } else {
+            System.out.println("Not valid date. Enter the date at format dd.mm.yyyy");
+            return this.getTicketsQuantity();
+        }
     }
 
 }
