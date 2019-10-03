@@ -1,12 +1,9 @@
 package dao;
 
-import entities.Booking;
-import entities.Passenger;
 import entities.User;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import services.UserService;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +38,7 @@ class UserDAOTest {
 
     @Test
     void getAll() {
+
         List<User> result = dao.getAll();
         assertEquals(3, result.size());
         assertTrue(result.contains(u1));
@@ -50,6 +48,7 @@ class UserDAOTest {
 
     @Test
     void getKeys() {
+
         List<String> result = dao.getKeys();
         assertEquals(3, result.size());
         assertTrue(result.contains("slv01"));
@@ -59,6 +58,7 @@ class UserDAOTest {
 
     @Test
     void update() {
+
         User updU1 = new User (login, "newPass", "newName", "newSurname");
         dao.update(updU1);
         assertEquals(3, dao.getAll().size());
@@ -71,6 +71,7 @@ class UserDAOTest {
 
     @Test
     void remove_by_obj() {
+
         dao.remove(u2);
         assertEquals(2, dao.getAll().size());
         assertNull(dao.get(u2.getLogin()));
@@ -81,6 +82,7 @@ class UserDAOTest {
 
     @Test
     void remove_by_login() {
+
         dao.remove(u2.getLogin());
         assertEquals(2, dao.getAll().size());
         assertNull(dao.get(u2.getLogin()));
@@ -91,6 +93,7 @@ class UserDAOTest {
 
     @Test
     void save_and_restore_from_file() {
+
         File source = new File("./src/test/data", "usersTest.bin");
 
         try {

@@ -1,9 +1,7 @@
 package services;
 
-import controllers.UserController;
 import entities.User;
 import entities.Passenger;
-import entities.User;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -65,6 +62,7 @@ class UserServiceTest {
 
     @Test
     void getPassengerData() {
+
         assertEquals(p1, service.getPassengerData(login,password));
         assertThrows(IllegalArgumentException.class, ()->service.getPassengerData(null, password));
         assertThrows(IllegalArgumentException.class, ()->service.getPassengerData(login, null));
@@ -74,6 +72,7 @@ class UserServiceTest {
 
     @Test
     void deleteUser_by_object() {
+
         service.deleteUser(u1);
         List<User> result = service.getAll();
         assertEquals(2, result.size());
@@ -84,6 +83,7 @@ class UserServiceTest {
 
     @Test
     void deleteUser_by_login() {
+
         service.deleteUser(u1.getLogin());
         List<User> result = service.getAll();
         assertEquals(2, result.size());
@@ -94,6 +94,7 @@ class UserServiceTest {
 
     @Test
     void save_restore_from_file() {
+
         service.save();
 
         UserService service = new UserService(file);

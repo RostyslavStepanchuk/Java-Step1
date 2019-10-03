@@ -55,6 +55,7 @@ class BookingServiceTest {
     }
     @Test
     void getAllBookings() {
+
         List<Booking> result = service.getAllBookings();
         assertEquals(3, result.size());
         Booking testBooking1 = result.get(0);
@@ -71,6 +72,7 @@ class BookingServiceTest {
 
     @Test
     void getFlightsOfPassenger() {
+
         List<Booking> result = service.getFlightsOfPassenger(p2);
         assertEquals(2, result.size());
         Booking testBooking1 = result.get(0);
@@ -89,6 +91,7 @@ class BookingServiceTest {
 
     @Test
     void cancelBooking_by_object() {
+
         Booking bTest = service.getAllBookings().get(0);
         String flight = bTest.getFlight();
         assertTrue(service.cancelBooking(bTest));
@@ -101,22 +104,9 @@ class BookingServiceTest {
         assertFalse(flights.contains(flight));
     }
 
-//    @Test
-//    void cancelBooking_by_id() {
-//        Booking bTest = service.getAllBookings().get(0);
-//        String flight = bTest.getFlight();
-//        assertTrue(service.cancelBooking(bTest.getId()));
-//        List<Booking> result = service.getAllBookings();
-//        assertEquals(2, result.size());
-//        List<String> flights = result
-//                .stream()
-//                .map(Booking::getFlight)
-//                .collect(Collectors.toList());
-//        assertFalse(flights.contains(flight));
-//    }
-
     @Test
     void save_restore_from_file() {
+
         service.save();
         BookingService service = new BookingService(file);
         List<Booking> result = service.getAllBookings();

@@ -53,11 +53,4 @@ public class Logger {
             e.printStackTrace();
         }
     }
-
-//    public static void main(String[] args) {
-//        //TODO remove after testing
-//        Logger logger = new Logger();
-//        ArrayList<String> history = logger.LogHistory("Rd");
-//        System.out.println(history);
-//    }
 }

@@ -6,14 +6,9 @@ import entities.Passenger;
 
 import java.io.File;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserService {
     private final UserDAO data;
-
-    public UserService() {
-        this(new File("./data", "users.bin"));
-    }
 
     public UserService(File file) {
         this.data = new UserDAO(file);

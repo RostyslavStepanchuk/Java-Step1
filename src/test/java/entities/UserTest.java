@@ -26,11 +26,13 @@ class UserTest {
 
     @Test
     void getPassengerData() {
+
         assertEquals(passenger, user.getPassengerData());
     }
 
     @Test
     void checkPassword() {
+
         assertTrue(user.checkPassword(password));
         assertFalse(user.checkPassword("passw123"));
         assertFalse(user.checkPassword(null));
@@ -38,16 +40,19 @@ class UserTest {
 
     @Test
     void getLogin() {
+
         assertEquals(login, user.getLogin());
     }
 
     @Test
     void hashCodeTest() {
+
         assertEquals(109537278, user.hashCode());
     }
 
     @Test
     void equals() {
+
         User copyUser = user;
         assertEquals(copyUser,user);
         assertNotEquals(null, user);

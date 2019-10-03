@@ -23,6 +23,7 @@ class FlightTest {
 
     @Test
     void constructor(){
+
         assertThrows(IllegalArgumentException.class, ()->new Flight(null, "barcelona", "kyiv", "05.08.2019-12:00", "05.08.2019-13:00", 20));
         assertThrows(IllegalArgumentException.class, ()->new Flight("XX00", null, "kyiv", "05.08.2019-12:00", "05.08.2019-13:00", 20));
         assertThrows(IllegalArgumentException.class, ()->new Flight("XX00", "barcelona", null, "05.08.2019-12:00","05.08.2019-13:00",  20));
@@ -34,22 +35,26 @@ class FlightTest {
 
     @Test
     void getFlightNumber() {
+
         assertEquals("XX222", flight.getFlightNumber());
     }
 
     @Test
     void getDestination() {
+
         assertEquals("barcelona", flight.getDestination());
     }
 
     @Test
     void getFrom() {
+
         assertEquals("kyiv", flight.getFrom());
     }
 
 
     @Test
     void getDepartString() {
+
         assertEquals("05.08.2019", flight.getDepartString());
     }
 
@@ -65,21 +70,25 @@ class FlightTest {
 
     @Test
     void getDepartTime() {
+
         assertEquals("12:00", flight.getDepartTime());
     }
 
     @Test
     void getArrivalTime() {
+
         assertEquals("14:00", flight.getArrivalTime());
     }
 
     @Test
     void getSeats() {
+
         assertEquals(100, flight.getSeats());
     }
 
     @Test
     void bookSeats() {
+
         int initialSeats = flight.getSeats();
         flight.bookSeats(10);
         assertEquals( initialSeats - 10, flight.getSeats());
@@ -88,6 +97,7 @@ class FlightTest {
 
     @Test
     void returnSeats() {
+
         int initialSeats = flight.getSeats();
         flight.returnSeats(10);
         assertEquals( initialSeats + 10, flight.getSeats());
@@ -96,6 +106,7 @@ class FlightTest {
 
     @Test
     void getDirectFlights() {
+
         List<Flight> referenceArray = new ArrayList<>();
         referenceArray.add(flight);
         assertEquals( referenceArray, flight.getDirectFlights());
@@ -114,6 +125,7 @@ class FlightTest {
 
     @Test
     void hashCodeTest() {
+
         assertEquals(83941106 ,flight.hashCode());
     }
 }

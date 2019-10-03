@@ -82,6 +82,7 @@ class FlightDAOTest {
 
     @Test
     void getAll() {
+
         assertEquals(referenceArray, flDAO.getAll());
         List<Flight> result = flDAO.getAll();
         assertEquals(9, result.size());
@@ -91,6 +92,7 @@ class FlightDAOTest {
 
     @Test
     void insert() {
+
         flDAO.insert(lh10);
         List<Flight> result = flDAO.getAll();
         assertEquals(10, result.size());
@@ -103,6 +105,7 @@ class FlightDAOTest {
 
     @Test
     void update() throws ParseException {
+
         Flight lh11 = new Flight("LH0001", "helsinki", "oslo", "15.08.2019-19:00", "15.08.2019-121:00", 100);
         flDAO.insert(lh11);
         assertEquals(lh11, flDAO.get(lh11.getFlightNumber()));
@@ -116,6 +119,7 @@ class FlightDAOTest {
 
     @Test
     void remove() {
+
         flDAO.remove(lh10.getFlightNumber());
         List<Flight> result = flDAO.getAll();
         assertEquals(9, result.size());
@@ -126,6 +130,7 @@ class FlightDAOTest {
 
     @Test
     void save_and_restore_from_file() {
+
         File source = new File("./src/test/data", "flightsTest.txt");
 
         try {

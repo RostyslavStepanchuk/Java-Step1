@@ -48,6 +48,7 @@ class BookingControllerTest {
 
     @Test
     void makeBooking(){
+
         assertTrue(controller.makeBooking("TripToAmsterdam", p3));
         assertThrows(IllegalArgumentException.class, ()->controller.makeBooking(null,p1));
         assertThrows(IllegalArgumentException.class, ()->controller.makeBooking("NewFlight",null));
@@ -56,6 +57,7 @@ class BookingControllerTest {
     }
     @Test
     void getAllBookings() {
+
         List<Booking> result = controller.getAllBookings();
         assertEquals(3, result.size());
         Booking testBooking1 = result.get(0);
@@ -72,6 +74,7 @@ class BookingControllerTest {
 
     @Test
     void getFlightsOfPassenger() {
+
         List<Booking> result = controller.getFlightsOfPassenger(p2);
         assertEquals(2, result.size());
         Booking testBooking1 = result.get(0);
@@ -90,6 +93,7 @@ class BookingControllerTest {
 
     @Test
     void cancelBooking_by_object() {
+
         Booking bTest = controller.getAllBookings().get(0);
         String flight = bTest.getFlight();
         assertTrue(controller.cancelBooking(bTest));
@@ -102,22 +106,9 @@ class BookingControllerTest {
         assertFalse(flights.contains(flight));
     }
 
-//    @Test
-//    void cancelBooking_by_id() {
-//        Booking bTest = controller.getAllBookings().get(0);
-//        String flight = bTest.getFlight();
-//        assertTrue(controller.cancelBooking(bTest.getId()));
-//        List<Booking> result = controller.getAllBookings();
-//        assertEquals(2, result.size());
-//        List<String> flights = result
-//                .stream()
-//                .map(Booking::getFlight)
-//                .collect(Collectors.toList());
-//        assertFalse(flights.contains(flight));
-//    }
-
     @Test
     void save_restore_from_file() {
+
         controller.save();
         BookingController controller = new BookingController(file);
         List<Booking> result = controller.getAllBookings();

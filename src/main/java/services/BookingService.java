@@ -11,10 +11,6 @@ import java.util.stream.Collectors;
 public class BookingService {
     private final BookingDAO data;
 
-    public BookingService() {
-        this(new File("./data", "bookings.txt"));
-    }
-
     public BookingService(File file) {
         data = new BookingDAO(file);
         data.retrieveInitialData();

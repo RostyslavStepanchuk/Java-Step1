@@ -54,6 +54,7 @@ class FlightControllerTest {
 
     @Test
     void getAllFlights() {
+
         List<Flight> result = controller.getAllFlights();
         assertEquals(2, result.size());
         Flight testFlight1 = result.get(0);
@@ -65,6 +66,7 @@ class FlightControllerTest {
 
     @Test
     void getSuitableFlights() {
+
         List<AirTrip> referenceArray = new ArrayList<>();
         referenceArray.add(lh2);
         assertEquals(referenceArray, controller.getSuitableFlights("barcelona", "01.08.2019", 3));
@@ -75,6 +77,7 @@ class FlightControllerTest {
 
     @Test
     void getFlightByNumber() {
+
         assertEquals(lh1, controller.getFlightByNumber("LH123"));
     }
 
@@ -82,6 +85,7 @@ class FlightControllerTest {
     //before test change flights date manually
     @Test
     void getNearestFlights() {
+
         List<AirTrip> referenceArray = new ArrayList<>();
         referenceArray.add(lh1);
         assertEquals(referenceArray, controller.getNearestFlights());
@@ -89,6 +93,7 @@ class FlightControllerTest {
 
     @Test
     void bookSeats() {
+
         int initialSeats = controller.getFlightByNumber("LH123").getSeats();
         controller.bookSeats(10, "LH123");
         assertEquals( initialSeats - 10, controller.getFlightByNumber("LH123").getSeats());
@@ -96,6 +101,7 @@ class FlightControllerTest {
 
     @Test
     void returnSeats() {
+
         int initialSeats = controller.getFlightByNumber("LH123").getSeats();
         controller.returnSeats(10, "LH123");
         assertEquals( initialSeats + 10, controller.getFlightByNumber("LH123").getSeats());

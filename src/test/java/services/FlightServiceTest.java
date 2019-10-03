@@ -81,11 +81,13 @@ class FlightServiceTest {
 
     @Test
     void getAllFlights() {
+
         assertEquals(flService.getAllFlights(), referenceArray);
     }
 
     @Test
     void getSuitableFlights() {
+
         List<AirTrip> referenceArray = new ArrayList<>();
         referenceArray.add(lh2);
         assertEquals(referenceArray, flService.getSuitableFlights("barcelona", "01.08.2019", 3));
@@ -98,6 +100,7 @@ class FlightServiceTest {
     //before test change flights date manually
     @Test
     void getNearestFlights() {
+
         List<AirTrip> referenceArray = new ArrayList<>();
         referenceArray.add(lh8);
         assertEquals(referenceArray, flService.getNearestFlights());
@@ -105,11 +108,13 @@ class FlightServiceTest {
 
     @Test
     void getFlightByNumber() {
+
         assertEquals(lh1, flService.getFlightByNumber("LH123"));
     }
 
     @Test
     void bookSeats() {
+
         int initialSeats = flService.getFlightByNumber("LH123").getSeats();
         flService.bookSeats(10, "LH123");
         assertEquals(initialSeats - 10, flService.getFlightByNumber("LH123").getSeats());
@@ -117,6 +122,7 @@ class FlightServiceTest {
 
     @Test
     void returnSeats() {
+
         int initialSeats = flService.getFlightByNumber("LH123").getSeats();
         flService.returnSeats(10, "LH123");
         assertEquals(initialSeats + 10, flService.getFlightByNumber("LH123").getSeats());
