@@ -49,6 +49,7 @@ class BookingDAOTest {
 
     @Test
     void getAll() {
+
         List<Booking> result = dao.getAll();
         assertEquals(2, result.size());
         assertTrue(result.contains(b1));
@@ -57,6 +58,7 @@ class BookingDAOTest {
 
     @Test
     void insert() {
+
         dao.insert(b3);
         List<Booking> result = dao.getAll();
         assertEquals(3, result.size());
@@ -68,6 +70,7 @@ class BookingDAOTest {
 
     @Test
     void update() {
+
         Booking b4 = new Booking("TripToDubai",p2);
         b4.addPassenger(p2);
         dao.insert(b4);
@@ -83,6 +86,7 @@ class BookingDAOTest {
 
     @Test
     void remove_by_object() {
+
         dao.remove(b2);
         List<Booking> result = dao.getAll();
         assertEquals(1, result.size());
@@ -93,6 +97,7 @@ class BookingDAOTest {
 
     @Test
     void remove_by_string() {
+
         dao.remove(b2.getId());
         List<Booking> result = dao.getAll();
         assertEquals(1, result.size());
@@ -103,6 +108,7 @@ class BookingDAOTest {
 
     @Test
     void save_and_restore_from_file() {
+
         File source = new File("./src/test/data", "bookingsTest.txt");
 
         try {

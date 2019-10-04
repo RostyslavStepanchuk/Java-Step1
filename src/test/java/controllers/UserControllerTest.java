@@ -5,7 +5,6 @@ import entities.User;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import controllers.UserController;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +53,7 @@ class UserControllerTest {
     void getAll() {
 
 
+
         List<User> result = controller.getAll();
         assertEquals(3, result.size());
         assertTrue(result.contains(u1));
@@ -63,6 +63,7 @@ class UserControllerTest {
 
     @Test
     void getPassengerData() {
+
         assertEquals(p1, controller.getPassengerData(login,password));
         assertThrows(IllegalArgumentException.class, ()->controller.getPassengerData(null, password));
         assertThrows(IllegalArgumentException.class, ()->controller.getPassengerData(login, null));
@@ -72,6 +73,7 @@ class UserControllerTest {
 
     @Test
     void deleteUser_by_object() {
+
         controller.deleteUser(u1);
         List<User> result = controller.getAll();
         assertEquals(2, result.size());
@@ -82,6 +84,7 @@ class UserControllerTest {
 
     @Test
     void deleteUser_by_login() {
+
         controller.deleteUser(u1.getLogin());
         List<User> result = controller.getAll();
         assertEquals(2, result.size());
@@ -92,6 +95,7 @@ class UserControllerTest {
 
     @Test
     void save_restore_from_file() {
+
         controller.save();
 
         UserController controller = new UserController(file);

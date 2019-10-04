@@ -6,7 +6,6 @@ import services.BookingService;
 
 import java.io.File;
 import java.util.List;
-import java.util.function.Consumer;
 
 
 public class BookingController {
@@ -42,29 +41,5 @@ public class BookingController {
 
     public void save() {
         service.save();
-    }
-
-
-// TODO Delete before release
-
-    public static void main(String[] args) {
-//
-//        System.out.println("=========CREATING THREE INITIAL BOOKINGS DEV PURPOSE ONLY============");
-        BookingController bookingMgr = new BookingController();
-        Passenger ps1 = new Passenger("Slava", "Stepanchuk");
-        Passenger ps2 = new Passenger("Nastia", "Stepanchuk");
-        Passenger ps3 = new Passenger("Oleksandr", "Ivanov");
-
-        bookingMgr.makeBooking("MyFamilyTrip", ps1, ps1, ps2, ps1, ps1);
-        bookingMgr.makeBooking("IvanovToAmsterdam", ps3, ps3);
-        bookingMgr.makeBooking("NastyaToStambul", ps2, ps2);
-        bookingMgr.save();
-        List<Booking> allBookings = bookingMgr.getAllBookings();
-        allBookings.forEach(new Consumer<Booking>() {
-            @Override
-            public void accept(Booking booking) {
-                System.out.println(booking);
-            }
-        });
     }
 }

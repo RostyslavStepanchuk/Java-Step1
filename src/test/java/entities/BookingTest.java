@@ -21,11 +21,13 @@ class BookingTest {
 
     @Test
     void getBookedBy() {
+
         assertEquals(passenger, booking.getBookedBy());
     }
 
     @Test
     void getId() {
+
         assertNotEquals(null, booking.getId());
         Booking newBooking = new Booking("FlightId", passenger);
         assertNotEquals(newBooking.getId(), booking.getId());
@@ -33,6 +35,7 @@ class BookingTest {
 
     @Test
     void addPassenger() {
+
         booking.addPassenger(passenger);
         booking.addPassenger(p2);
         assertArrayEquals(new Passenger[]{passenger, p2}, booking.getPassengers().toArray());
@@ -44,6 +47,7 @@ class BookingTest {
 
     @Test
     void equals() {
+
         Booking copyBooking = booking;
         assertEquals(copyBooking,booking);
         Booking newBooking = new Booking("FlightId", passenger);
@@ -57,6 +61,7 @@ class BookingTest {
 
     @Test
     void test_hashCode() {
+
         int code = booking.hashCode();
         assertNotEquals(0, code);
     }

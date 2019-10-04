@@ -4,10 +4,10 @@ import entities.AirTrip;
 
 import java.util.function.Predicate;
 
-public class ConPossible implements Predicate<AirTrip> {
+public class FlightConnectionPossible implements Predicate<AirTrip> {
     private AirTrip origin;
 
-    public ConPossible(AirTrip origin) {
+    public FlightConnectionPossible(AirTrip origin) {
         this.origin = origin;
     }
 

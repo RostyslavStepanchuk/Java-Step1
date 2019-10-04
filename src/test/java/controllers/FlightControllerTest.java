@@ -39,7 +39,7 @@ class FlightControllerTest {
             e.printStackTrace();
         }
 
-        lh1 = new Flight("LH123", "kyiv", "san-francisko", "01.10.2019-12:00", "02.10.2019-02:00", 300);
+        lh1 = new Flight("LH123", "kyiv", "san-francisko", "14.08.2019-12:00", "15.08.2019-02:00", 300);
         lh2 = new Flight("LH222", "kyiv", "barcelona", "01.08.2019-12:00", "01.08.2019-14:00", 250);
         flDAO = new FlightDAO(file);
         flDAO.retrieveInitialData();
@@ -54,6 +54,7 @@ class FlightControllerTest {
 
     @Test
     void getAllFlights() {
+
         List<Flight> result = controller.getAllFlights();
         assertEquals(2, result.size());
         Flight testFlight1 = result.get(0);
@@ -65,6 +66,7 @@ class FlightControllerTest {
 
     @Test
     void getSuitableFlights() {
+
         List<AirTrip> referenceArray = new ArrayList<>();
         referenceArray.add(lh2);
         assertEquals(referenceArray, controller.getSuitableFlights("barcelona", "01.08.2019", 3));
@@ -75,20 +77,23 @@ class FlightControllerTest {
 
     @Test
     void getFlightByNumber() {
+
         assertEquals(lh1, controller.getFlightByNumber("LH123"));
     }
 
 
-    //before test change flights date manually at line 42
-//    @Test
-//    void getNearestFlights() {
-//        List<AirTrip> referenceArray = new ArrayList<>();
-//        referenceArray.add(lh1);
-//        assertEquals(referenceArray, controller.getNearestFlights());
-//    }
+    //before test change flights date manually
+    @Test
+    void getNearestFlights() {
+
+        List<AirTrip> referenceArray = new ArrayList<>();
+        referenceArray.add(lh1);
+        assertEquals(referenceArray, controller.getNearestFlights());
+    }
 
     @Test
     void bookSeats() {
+
         int initialSeats = controller.getFlightByNumber("LH123").getSeats();
         controller.bookSeats(10, "LH123");
         assertEquals( initialSeats - 10, controller.getFlightByNumber("LH123").getSeats());
@@ -96,6 +101,7 @@ class FlightControllerTest {
 
     @Test
     void returnSeats() {
+
         int initialSeats = controller.getFlightByNumber("LH123").getSeats();
         controller.returnSeats(10, "LH123");
         assertEquals( initialSeats + 10, controller.getFlightByNumber("LH123").getSeats());

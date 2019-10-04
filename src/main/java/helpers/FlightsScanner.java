@@ -6,7 +6,6 @@ import entities.FlightConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
@@ -25,7 +24,7 @@ public class FlightsScanner {
 
     private List<AirTrip> createTripExtensions(AirTrip trip){
         List<AirTrip> result = new ArrayList<>();
-        origin.stream().filter(new ConPossible(trip)).forEach(airTrip -> result.add(new FlightConnection(trip, airTrip)));
+        origin.stream().filter(new FlightConnectionPossible(trip)).forEach(airTrip -> result.add(new FlightConnection(trip, airTrip)));
         return result;
     }
 
@@ -59,6 +58,5 @@ public class FlightsScanner {
                                 airTrip.getSeats() >= seats)
                 .collect(Collectors.toList());
     }
-
 
 }

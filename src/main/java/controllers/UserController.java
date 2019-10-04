@@ -42,21 +42,5 @@ public class UserController {
     public void save() {
         service.save();
     }
-
-//    public static void main(String[] args) {
-//        System.out.println("=========CREATING THREE INITIAL USERS DEV PURPOSE ONLY============");
-//        UserController userMgr = new UserController();
-//        Passenger ps1 = userMgr.createUser("slv01", "Password", "Slava", "Stepanchuk");
-//        Passenger ps2 = userMgr.createUser("nst01","Passsss","Nastia", "Stepanchuk");
-//        Passenger ps3 = userMgr.createUser("olex", "psv","Oleksandr", "Ivanov");
-//
-//        Passenger ps4 = userMgr.getPassengerData("slv01","Password");
-//        userMgr.save();
-//        List<User> allUsers = userMgr.getAll();
-//        allUsers.forEach(System.out::println);
-//
-//        System.out.println("Retrieved passenger");
-//        System.out.println(ps4);
-//    }
 }
 

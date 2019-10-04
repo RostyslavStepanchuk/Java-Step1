@@ -43,7 +43,7 @@ class FlightServiceTest {
         lh5 = new Flight("LH555", "kyiv", "tel-aviv", "04.08.2019-23:00", "05.08.2019-01:30", 200);
         lh6 = new Flight("LH666", "kyiv", "new-york", "05.08.2019-12:00", "05.08.2019-23:45", 250);
         lh7 = new Flight("LH777", "kyiv", "wroclaw", "12.08.2019-14:15", "12.08.2019-15:10", 200);
-        lh8 = new Flight("LH888", "kyiv", "prague", "30.09.2019-18:00", "30.09.2019-20:00", 250);
+        lh8 = new Flight("LH888", "kyiv", "prague", "13.08.2019-18:00", "13.08.2019-20:00", 250);
         lh9 = new Flight("LH999", "kyiv", "oslo", "14.08.2019-19:00", "14.08.2019-121:00", 200);
 
         try {
@@ -81,11 +81,13 @@ class FlightServiceTest {
 
     @Test
     void getAllFlights() {
+
         assertEquals(flService.getAllFlights(), referenceArray);
     }
 
     @Test
     void getSuitableFlights() {
+
         List<AirTrip> referenceArray = new ArrayList<>();
         referenceArray.add(lh2);
         assertEquals(referenceArray, flService.getSuitableFlights("barcelona", "01.08.2019", 3));
@@ -95,21 +97,24 @@ class FlightServiceTest {
 
     }
 
-    //before test change flights date manually at line 46
-//    @Test
-//    void getNearestFlights() {
-//        List<AirTrip> referenceArray = new ArrayList<>();
-//        referenceArray.add(lh8);
-//        assertEquals(referenceArray, flService.getNearestFlights());
-//    }
+    //before test change flights date manually
+    @Test
+    void getNearestFlights() {
+
+        List<AirTrip> referenceArray = new ArrayList<>();
+        referenceArray.add(lh8);
+        assertEquals(referenceArray, flService.getNearestFlights());
+    }
 
     @Test
     void getFlightByNumber() {
+
         assertEquals(lh1, flService.getFlightByNumber("LH123"));
     }
 
     @Test
     void bookSeats() {
+
         int initialSeats = flService.getFlightByNumber("LH123").getSeats();
         flService.bookSeats(10, "LH123");
         assertEquals(initialSeats - 10, flService.getFlightByNumber("LH123").getSeats());
@@ -117,6 +122,7 @@ class FlightServiceTest {
 
     @Test
     void returnSeats() {
+
         int initialSeats = flService.getFlightByNumber("LH123").getSeats();
         flService.returnSeats(10, "LH123");
         assertEquals(initialSeats + 10, flService.getFlightByNumber("LH123").getSeats());
