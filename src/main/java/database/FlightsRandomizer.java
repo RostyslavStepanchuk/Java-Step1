@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class FlightsRandomaizer {
+public class FlightsRandomizer {
 
     private final String[] destinations = {
             "barcelona",
@@ -50,7 +50,7 @@ public class FlightsRandomaizer {
     private final int lastMonthInSchedule;
     private final int firstMonthInSchedule;
 
-    public FlightsRandomaizer(int quantity, int firstMonthInSchedule, int lastMonthInSchedule) {
+    public FlightsRandomizer(int quantity, int firstMonthInSchedule, int lastMonthInSchedule) {
         this.quantity = quantity;
         this.firstMonthInSchedule = firstMonthInSchedule;
         this.lastMonthInSchedule = lastMonthInSchedule;
@@ -138,12 +138,12 @@ public class FlightsRandomaizer {
 
 
     public static void main(String[] args) throws ParseException {
-        FlightsRandomaizer newFlights = new FlightsRandomaizer(1500, 10,11);
-        List<Flight> flights = newFlights.get();
-        FlightDAO flDAO = new FlightDAO();
+        FlightsRandomizer flightsRandomizer = new FlightsRandomizer(1500, 10,11);
+        List<Flight> flights = flightsRandomizer.get();
+        FlightDAO flightDAO = new FlightDAO();
         for (int i = 0; i < flights.size(); i++) {
-            flDAO.insert(flights.get(i));
+            flightDAO.insert(flights.get(i));
         }
-        flDAO.saveData();
+        flightDAO.saveData();
     }
 }

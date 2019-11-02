@@ -3,7 +3,6 @@ package entities;
 import helpers.FlightConnectionPossible;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.*;
 
 public class FlightConnection implements Serializable, AirTrip {

@@ -4,7 +4,6 @@ import dao.FlightDAO;
 import entities.AirTrip;
 import entities.Flight;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -95,15 +94,6 @@ class FlightServiceTest {
         assertNotEquals(referenceArray, flService.getSuitableFlights("madrid", "01.08.2019", 3));
         assertNotEquals(referenceArray, flService.getSuitableFlights("barcelona", "02.08.2019", 300));
 
-    }
-
-    //before test change flights date manually
-    @Test
-    void getNearestFlights() {
-
-        List<AirTrip> referenceArray = new ArrayList<>();
-        referenceArray.add(lh8);
-        assertEquals(referenceArray, flService.getNearestFlights());
     }
 
     @Test

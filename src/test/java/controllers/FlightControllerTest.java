@@ -5,7 +5,6 @@ import entities.AirTrip;
 import entities.Flight;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import services.FlightService;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -80,16 +78,7 @@ class FlightControllerTest {
 
         assertEquals(lh1, controller.getFlightByNumber("LH123"));
     }
-
-
-    //before test change flights date manually
-    @Test
-    void getNearestFlights() {
-
-        List<AirTrip> referenceArray = new ArrayList<>();
-        referenceArray.add(lh1);
-        assertEquals(referenceArray, controller.getNearestFlights());
-    }
+    
 
     @Test
     void bookSeats() {

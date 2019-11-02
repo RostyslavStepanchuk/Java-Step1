@@ -9,7 +9,6 @@ public class Passenger implements Serializable {
 
     public Passenger(String name, String surname) {
         if (name != null && surname != null) {
-//            this.id = UUID.randomUUID().toString();
             this.name = name;
             this.surname = surname;
         } else {
@@ -41,7 +40,6 @@ public class Passenger implements Serializable {
         if (obj == null) return false;
         if (this.getClass() != obj.getClass()) return false;
         Passenger passenger = (Passenger) obj;
-//        return this.id.equals(passenger.id);
         return this.getFullName().equals(passenger.getFullName());
     }
 
