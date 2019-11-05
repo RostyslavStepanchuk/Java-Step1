@@ -7,7 +7,6 @@ import entities.AirTrip;
 import entities.Booking;
 import entities.Flight;
 import entities.Passenger;
-import logger.Logger;
 import view.InvalidUserInput;
 import view.PassengerInputs;
 

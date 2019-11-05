@@ -87,11 +87,11 @@ public class FlightDAO {
 
     public void saveData() {
         try {
-            FileOutputStream f = new FileOutputStream(file);
-            ObjectOutputStream o = new ObjectOutputStream(f);
-            o.writeObject(new ArrayList<>(map.values()));
-            o.close();
-            f.close();
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(new ArrayList<>(map.values()));
+            oos.close();
+            fos.close();
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Flights.txt file not found");
         } catch (IOException e) {
