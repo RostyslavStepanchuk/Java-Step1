@@ -1,14 +1,9 @@
 package view;
 
-//import com.sun.org.apache.xalan.internal.xsltc.compiler.util.TypeCheckError;
-//import sun.awt.windows.WPrinterJob;
-
-import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PassengerInputs {
-    // validators must be added;
     private Scanner scan = new Scanner(System.in);
 
 
