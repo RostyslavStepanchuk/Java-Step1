@@ -7,13 +7,12 @@ import java.util.HashMap;
 public class Logger {
     private final File file;
     private final HashMap<String, ArrayList<String>> passengersLogHistory;
-    private ArrayList<String> historyArray;
 
     public Logger() {
         this(new File("./data", "logs.txt"));
     }
 
-    public Logger(File file) {
+    private Logger(File file) {
         this.file = file;
         this.passengersLogHistory = new HashMap<>();
 
@@ -29,13 +28,13 @@ public class Logger {
             throw new IllegalArgumentException("User is not authorized");
         }
 
-
+        ArrayList<String> historyArray;
         if (passengersLogHistory.containsKey(login)) {
             historyArray = passengersLogHistory.get(login);
             historyArray.add(action);
             passengersLogHistory.put(login, historyArray);
         } else {
-            historyArray = new ArrayList<String>();
+            historyArray = new ArrayList<>();
             historyArray.add(action);
             passengersLogHistory.put(login, historyArray);
         }

@@ -4,34 +4,33 @@ import controllers.ConsoleController;
 import entities.Passenger;
 import logger.Logger;
 
-
 public class ConsoleView {
-    PassengerInputs pi = new PassengerInputs();
-    Logger logger = new Logger();
-    private ConsoleController CC = new ConsoleController();
+    private PassengerInputs passengerInputs = new PassengerInputs();
+    private Logger logger = new Logger();
+    private ConsoleController concoleController = new ConsoleController();
     private Passenger passenger;
     private boolean isAuthorized = false;
 
-    public void startApp() throws InvalidUserInput {
+    public void startApp(){
         System.out.println("Press 1 to Register new user");
         System.out.println("Press 2 to Authorize");
         System.out.println("Press 3 to continue without Authorization");
         System.out.println("Press 4 to Exit");
         try {
-            switch (pi.getMenuItem()) {
+            switch (passengerInputs.getMenuItem()) {
                 case 1:
                     System.out.println("Registration:\n");
-                    passenger = CC.startRegistration();
+                    passenger = concoleController.startRegistration();
                     System.out.println(passenger);
                     isAuthorized = true;
                     this.showMenu();
                     break;
                 case 2:
                     System.out.println("Authorization:\n");
-                    passenger = CC.startAuthorization();
+                    passenger = concoleController.startAuthorization();
                     while (passenger == null) {
                         System.out.println("Wrong data\n\n");
-                        passenger = CC.startAuthorization();
+                        passenger = concoleController.startAuthorization();
                     }
                     isAuthorized = true;
                     System.out.println(passenger);
@@ -74,34 +73,34 @@ public class ConsoleView {
 
     private void menuItemReader() throws InvalidUserInput {
         try {
-            switch (pi.getMenuItem()) {
+            switch (passengerInputs.getMenuItem()) {
                 case 1:
-                    CC.getNearestFlight();
+                    concoleController.getNearestFlight();
                     if (isAuthorized) logger.add(passenger.getName(), "Searched for nearest flight");
                     break;
                 case 2:
-                    CC.getFlightByIdAndShowIt();
+                    concoleController.getFlightByIdAndShowIt();
                     if (isAuthorized) logger.add(passenger.getName(), "Got flight by Id");
                     break;
                 case 3:
-                    CC.searchAndBooking();
+                    concoleController.searchAndBooking();
                     if (isAuthorized) logger.add(passenger.getName(), "Searched and Booked");
                     break;
                 case 4:
-                    CC.cancelBooking();
+                    concoleController.cancelBooking();
                     if (isAuthorized) logger.add(passenger.getName(), "Cancelled booking");
                     break;
                 case 5:
-                    CC.getBookingsOfPassenger(passenger, isAuthorized);
+                    concoleController.getBookingsOfPassenger(passenger, isAuthorized);
                     if (isAuthorized) logger.add(passenger.getName(), "Searched for own bookings");
                     break;
                 case 6:
-                    CC.saveChanges(isAuthorized);
+                    concoleController.saveChanges(isAuthorized);
                     if (isAuthorized) logger.save();
                     System.exit(1);
                     break;
                 case 7:
-                    CC.saveChanges(isAuthorized);
+                    concoleController.saveChanges(isAuthorized);
                     if (isAuthorized) {
                         logger.save();
                         passenger = null;
