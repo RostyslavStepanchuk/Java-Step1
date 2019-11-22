@@ -1,8 +1,10 @@
 package dao;
 
+import database.FlightsRandomizer;
 import entities.Flight;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,7 +66,11 @@ public class FlightDAO {
     public void retrieveInitialData() {
         try {
             FileInputStream fis = new FileInputStream(file);
-            if (fis.available() > 0) {
+            if (fis.available() == 0) {
+                FlightsRandomizer flightsRandomizer = new FlightsRandomizer(1500, 11, 12);
+                flightsRandomizer.get().forEach(this::insert);
+                saveData();
+            } else {
                 ObjectInputStream ois = new ObjectInputStream(fis);
 
                 List data = (ArrayList) ois.readObject();
@@ -80,7 +86,7 @@ public class FlightDAO {
         } catch (IOException e) {
             e.printStackTrace();
             throw new IllegalArgumentException("Error while initializing stream");
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | ParseException e) {
             e.printStackTrace();
         }
     }

@@ -7,6 +7,7 @@ import entities.Passenger;
 import view.InvalidUserInput;
 import view.PassengerInputs;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -89,5 +90,12 @@ public class ConsoleController {
         }
         flightController.save();
         bookingController.save();
+    }
+
+    public void getAllFlights() {
+        flightController.getAllFlights()
+                .stream()
+                .sorted(Comparator.comparing(Flight::getDepart))
+                .forEach(System.out::println);
     }
 }
