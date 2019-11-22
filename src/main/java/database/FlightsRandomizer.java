@@ -138,7 +138,7 @@ public class FlightsRandomizer {
 
 
     public static void main(String[] args) throws ParseException {
-        FlightsRandomizer flightsRandomizer = new FlightsRandomizer(1500, 10,11);
+        FlightsRandomizer flightsRandomizer = new FlightsRandomizer(1500, 11,12);
         List<Flight> flights = flightsRandomizer.get();
         FlightDAO flightDAO = new FlightDAO();
         for (int i = 0; i < flights.size(); i++) {

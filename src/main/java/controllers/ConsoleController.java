@@ -7,6 +7,7 @@ import entities.Passenger;
 import view.InvalidUserInput;
 import view.PassengerInputs;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -32,6 +33,7 @@ public class ConsoleController {
 
     public void getNearestFlight() {
         List<Flight> nearestFlights = flightController.getNearestFlights();
+        System.out.println("reached here");
         nearestFlights.forEach(System.out::println);
     }
 
@@ -89,5 +91,12 @@ public class ConsoleController {
         }
         flightController.save();
         bookingController.save();
+    }
+
+    public void getAllflights() {
+        flightController.getAllFlights()
+                .stream()
+                .sorted(Comparator.comparing(Flight::getDepart))
+                .forEach(System.out::println);
     }
 }

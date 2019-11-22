@@ -67,6 +67,7 @@ public class ConsoleView {
         if (isAuthorized) {
             System.out.println("7.Logout;");
         }
+        System.out.println("100.Get whole flights table");
         this.menuItemReader();
     }
 
@@ -110,6 +111,8 @@ public class ConsoleView {
                         System.exit(1);
                     }
                 case 0:
+                case 100:
+                    concoleController.getAllflights();
                 default:
                     System.out.println("Try to enter menu item again ");
             }
