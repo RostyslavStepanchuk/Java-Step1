@@ -33,7 +33,6 @@ public class ConsoleController {
 
     public void getNearestFlight() {
         List<Flight> nearestFlights = flightController.getNearestFlights();
-        System.out.println("reached here");
         nearestFlights.forEach(System.out::println);
     }
 
@@ -93,7 +92,7 @@ public class ConsoleController {
         bookingController.save();
     }
 
-    public void getAllflights() {
+    public void getAllFlights() {
         flightController.getAllFlights()
                 .stream()
                 .sorted(Comparator.comparing(Flight::getDepart))

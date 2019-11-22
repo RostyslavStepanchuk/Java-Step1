@@ -112,7 +112,7 @@ public class ConsoleView {
                     }
                 case 0:
                 case 100:
-                    concoleController.getAllflights();
+                    concoleController.getAllFlights();
                 default:
                     System.out.println("Try to enter menu item again ");
             }
